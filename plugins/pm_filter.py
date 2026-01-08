@@ -2111,9 +2111,17 @@ async def auto_filter(client, msg, spoll=False):
             search = search.replace("-", " ")
             search = search.replace(":","")
             files, offset, total_results = await get_search_results(message.chat.id ,search.lower(), offset=0, filter=True)
-            if not files:
-                # Remove the "Searching..." placeholder
-                await m.delete()
+         if not files:
+            await m.delete()
+            print("DEBUG: no files found")
+
+            await send_not_found_suggestions(
+                client,
+                message,
+                search.lower(),
+                settings
+    )
+    return
                 # Instead of falling back to the old spell‑check or silent
                 # behaviour, provide smart suggestions and a request button.
                 await send_not_found_suggestions(client, message, search.lower(), settings)
