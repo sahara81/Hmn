@@ -6,7 +6,7 @@ import math
 import random
 import os
 lock = asyncio.Lock()
-
+from plugins.pm_filter import send_not_found_suggestions
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 import pyrogram
