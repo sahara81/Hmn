@@ -1,14 +1,12 @@
-FROM python:3.10.8-slim-buster
+FROM python:3.10
 
-WORKDIR /DQTheFileDonor
+WORKDIR /app
 
-# requirements install
 COPY requirements.txt .
-RUN pip3 install --upgrade pip \
-    && pip3 install --no-cache-dir -r requirements.txt
 
-# project files copy
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
 
-# start bot
 CMD ["bash", "start.sh"]
