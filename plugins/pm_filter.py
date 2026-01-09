@@ -3041,3 +3041,20 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
+from pyrogram import Client, filters
+from pyrogram.errors import RPCError
+
+@Client.on_callback_query()
+async def _debug_and_answer_all_callbacks(client, query):
+    try:
+        # ✅ Telegram ko instant response (warna button dead lagta hai)
+        await query.answer(cache_time=0)
+
+        # ✅ Render logs me proof aayega ki callback hit ho raha hai
+        print("✅ CALLBACK HIT:", query.data)
+
+    except RPCError as e:
+        print("❌ CALLBACK RPCError:", repr(e))
+    except Exception as e:
+        print("❌ CALLBACK Exception:", repr(e))
