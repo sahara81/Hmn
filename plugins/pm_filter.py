@@ -1,4 +1,5 @@
 # Kanged From @TroJanZhe
+print("PM_FILTER_LOADED")
 import asyncio
 import re
 import ast
